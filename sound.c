@@ -9,6 +9,33 @@ void printID(char id[]){
 
 	printf("\n");
 }
+
+//function definition of disWAVData()
+void dispWAVData(char filename[]){
+	int i,j;	//loop counters
+	FILE *fp;	//File handler to open the file "test.wav"
+	double rms[80], sum;		//80 pieces of RMS value
+	short samples[SAMPLERATE];	//totally 16000 samples in 1 sec
+	WAVHeader mh;		//just used tokip over te header of a file
+
+	fp = fopen(filename, "r");
+
+	if(fp == NULL){	//if fopen fails
+		printf("Error when open the file!\n");
+		return;
+	}
+	fread(&mh, sizeof(mh), 1, fp);	//Skip over the header of a wave file
+	fread(samples, sizeof(short), SAMPLERATE, fp);
+	fclose(fp);
+	for(i=0; i<80; i++){
+		for(j=0, sum=0.0; j<SAMPLERATE/80; j++){
+			sum += samples[j+i*200]*samples[j+i*200];
+		}
+		rms[i] = sqrt(sum/200);
+		printf("rms[%d]: %10.4f\n", i, rms[i]);
+	}
+}
+
 //function definition of dispWAVHeader()
 void dispWAVHeader(char filename[]){
 	FILE *fp;

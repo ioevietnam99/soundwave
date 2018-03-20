@@ -17,6 +17,7 @@ typedef struct{
 	char subchunk2ID[4];
 	unsigned int subchunk2Size;
 }WAVHeader;
+
 //Function prototypes
 void dispWAVHeader(char filename[]);
 void dispWAVData(char filename[]);

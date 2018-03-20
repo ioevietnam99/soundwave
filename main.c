@@ -10,6 +10,7 @@ int main(void){
 		//display WAV header
 		dispWAVHeader("test.wav");
 		//display WAV header strength as decibel values	
+		dispWAVData("test.wav");
 		break;	//loop runs just once
 	}
 	return 0;

@@ -3,7 +3,7 @@ APPNAME = sound.a
 
 #link rule
 $(APPNAME) : $(OBJ)
-	gcc -o $(APPNAME) $(OBJ)
+	gcc -o $(APPNAME) $(OBJ) -lm
 
 #compiliing rule
 %.o : %.c
@@ -11,5 +11,6 @@ $(APPNAME) : $(OBJ)
 
 clean :
 	rm $(OBJ) $(APPNAME)
+
 tar:
 	tar cf project.tar *
